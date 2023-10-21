@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub enum Country {
   UnitedStates,
   Canada,
@@ -14,7 +15,7 @@ pub enum Country {
   India,
   Switzerland
 }
-
+#[derive(Debug)]
 pub enum Continent {
   NorthAmerica,
   Europe,
@@ -26,7 +27,7 @@ pub enum Continent {
 use Country::*;
 
 impl Country {
-  fn country_to_continent(&self) -> Continent {
+  pub fn country_to_continent(&self) -> Continent {
     match self {
       UnitedStates | Canada => Continent::NorthAmerica,
       UnitedKingdom | Germany | France | Ireland | Spain | Switzerland => Continent::Europe,
