@@ -7,7 +7,15 @@ mod transaction;
 use transaction::Transaction;
 use std::collections::HashMap;
 
+// TODO: documentation
+
 // Utilize HashMap to keep track of the total invested amount per continent and print the result out for each continent
+
+/// Constructs a HashMap to keep track of the total invested amount per continent
+/// # Arguments
+/// * transactions - reference slice of transactions
+/// # Returns
+/// * Hashmap with keys of continent and values representing the total invested amount of the continent
 fn compute_invested_per_continent(transactions: &Vec<Transaction>) -> HashMap<String, f64> {
   let mut map = HashMap::new();
   for tran in transactions  {
@@ -17,6 +25,13 @@ fn compute_invested_per_continent(transactions: &Vec<Transaction>) -> HashMap<St
 } 
 
 // Create a function that takes in a reference slice of transactions and a reference of Continent, and filters rows by the Continent. Print only transactions with European companies
+
+/// Prints only transactions filtered by specified continent
+/// # Arguments
+/// * transactions - reference slice of transactions
+/// * continent - reference of Continent enum
+/// # Returns
+/// * void
 fn filter_transactions_by_continent(transactions: &Vec<Transaction>, continent: &Continent){
   for tran in transactions.iter().filter(|x| x.continent.to_string() == continent.to_string()) {
     println!("{:?}", tran);

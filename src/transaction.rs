@@ -14,6 +14,11 @@ pub struct Transaction{
 }
 
 impl Transaction{
+  /// Constructs a transaction record from a line read from the csv file
+  /// # Arguments
+  /// * line - string slice containing transaction data
+  /// # Returns
+  /// * Result enum that returns a Transaction Struct if successful or  String containing an error message.
   pub fn from_csv_line(line:&str)-> Result<Transaction, String> {
     // a. create a variable fields by calling the split method using line with the delimiter ','followed by the collect method to transform it to a Vec of string slices
     let fields: Vec<&str> = line.split(',').collect();
