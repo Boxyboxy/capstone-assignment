@@ -8,8 +8,8 @@ pub struct Transaction{
   client_id: u32,
   asset_name: String,
   country: Country,
-  continent: Continent,
-  amount: f64,
+  pub continent: Continent,
+  pub amount: f64,
   days_under_management: i64
 }
 

@@ -15,14 +15,7 @@ pub enum Country {
   India,
   Switzerland
 }
-#[derive(Debug)]
-pub enum Continent {
-  NorthAmerica,
-  Europe,
-  Asia,
-  Oceania,
-  SouthAmerica
-}
+
 
 use Country::*;
 
@@ -60,4 +53,28 @@ impl std::str::FromStr for Country {
     }
 
   }
+}
+
+use std::fmt;
+
+
+#[derive(Debug)]
+pub enum Continent {
+  NorthAmerica,
+  Europe,
+  Asia,
+  Oceania,
+  SouthAmerica
+}
+
+impl fmt::Display for Continent {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            Continent::NorthAmerica =>write!(f,"NorthAmerica"),
+            Continent::Europe =>write!(f,"Europe"),
+            Continent::Asia =>write!(f,"Asia"),
+            Continent::Oceania =>write!(f,"Oceania"),
+            Continent::SouthAmerica =>write!(f,"SouthAmerica"),
+        }
+    }
 }

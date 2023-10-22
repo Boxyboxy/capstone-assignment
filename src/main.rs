@@ -5,6 +5,23 @@ use std::fs::File;
 use std::io::{self, BufReader, BufRead};
 mod transaction;
 use transaction::Transaction;
+use std::collections::HashMap;
+
+// Utilize HashMap to keep track of the total invested amount per continent and print the result out for each continent
+fn compute_invested_per_continent(transactions: &Vec<Transaction>) -> HashMap<String, f64> {
+  let mut map = HashMap::new();
+  for tran in transactions  {
+    *map.entry(tran.continent.to_string()).or_insert(0.0) += tran.amount;
+  }
+  map
+} 
+
+// Create a function that takes in a reference slice of transactions and a reference of Continent, and filters rows by the Continent. Print only transactions with European companies
+fn filter_transactions_by_continent(transactions: &Vec<Transaction>, continent: &Continent){
+  for tran in transactions.iter().filter(|x| x.continent.to_string() == continent.to_string()) {
+    println!("{:?}", tran);
+  }
+}
 
 fn main() {
 
@@ -37,7 +54,7 @@ fn main() {
   }
   // f. run a for loop by using transactions to call the iter method
     // - print every item in transactions
-  for tran in transactions {
+  for tran in &transactions {
     println!("{:?}", tran);
   }
 
@@ -45,5 +62,9 @@ fn main() {
   for skip in skipped_lines {
     println!("{:?}", skip);
   }
-  
+
+  let map = compute_invested_per_continent(&transactions);
+  println!("{:?}", map);
+
+  filter_transactions_by_continent(&transactions, &Continent::Europe);
 }
